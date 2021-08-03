@@ -24,3 +24,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/admin', function () {
+        return view('admin');
+    });
+});
